@@ -2,12 +2,18 @@
     <x-slot:title>
         Welcome
     </x-slot:title>
-    <div class="max-w-2xl mx-auto">
-        <div class="card-body">
-            <div>
-                <h1 class="text-3xl font-bold">Welcome to Chirper!</h1>
-                <p class="mt-4 text-base-content/60">This is your brand new Laravel sing (or chirp)</p>
+    <div class="max-w-2xl mx-auto h-screen flex flex-col items-center justify-center">
+        @forelse ($chirps as $chirp)
+            <x-chirp :chirp="$chirp" />
+        @empty
+            <div class="py-12">
+                <div class="text-center">
+                    <div class="mt-4 text-base-content/60">
+                        No chirps yet. Be the first to chirp!.
+                    </div>
+                </div>
             </div>
-        </div>
+            
+        @endempty
     </div>
 </x-layout>
