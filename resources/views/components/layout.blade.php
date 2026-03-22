@@ -20,16 +20,16 @@
     <header>
         <nav class="flex justify-between items-center fixed w-full bg-gray-300 p-3 shadow z-50">
             <h1 class="font-bold text-2xl cursor-pointer">
-                Chirper
+                <a href="/">Chirper</a>
             </h1>
 
             <div class="flex gap-5">
 
                 @auth
                     <span>{{auth()->user()->name}}</span>
-                    <form method="POST" action="/logout" class="inline">
+                    <form method="POST" action="{{route('logout')}}" class="inline">
                         @csrf
-                        <button class="cursor-pointer font-bold text-white bg-blue-600 px-4 py-1 rounded-full">Logout</button>
+                        <button type="submit" class="cursor-pointer font-bold text-white bg-blue-600 px-4 py-1 rounded-full">Logout</button>
                     </form>
                 @else
                 <a href="/login" class="cursor-pointer font-bold">Sign In</a>

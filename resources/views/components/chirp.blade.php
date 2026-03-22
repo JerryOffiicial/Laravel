@@ -29,30 +29,32 @@
                 </div>
 
                 <div>
-                    @if($chirp->updated_at->gt($chirp->created_at->addSeconds(5)))
+                    @if ($chirp->updated_at->gt($chirp->created_at->addSeconds(5)))
                         <span class="text-base-content/60">.</span>
                         <span class="text-sm text-base-content/60 italic">edited</span>
                     @endif
                 </div>
             </div>
 
-            <div>
-                <div class="mt-2 flex justify-between">
-                    <a href="/chirps/{{ $chirp->id }}/edit"
-                        class="bg-blue-300 py-1.5 px-2.5 rounded-lg hover:bg-green-300">
-                        Edit
-                    </a>
+            @can('update', $chirp)
+                <div>
+                    <div class="mt-2 flex justify-between">
+                        <a href="/chirps/{{ $chirp->id }}/edit"
+                            class="bg-blue-300 py-1.5 px-2.5 rounded-lg hover:bg-green-300">
+                            Edit
+                        </a>
 
-                    <form method="POST" action="/chirps/{{ $chirp->id }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" onclick="return confirm('Are you sure you want to delete this chirp?')"
-                            class=" text-white bg-red-600 py-1.5 px-2.5 rounded-lg hover:bg-orange-600 cursor-pointer">
-                            Delete
-                        </button>
-                    </form>
+                        <form method="POST" action="/chirps/{{ $chirp->id }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Are you sure you want to delete this chirp?')"
+                                class=" text-white bg-red-600 py-1.5 px-2.5 rounded-lg hover:bg-orange-600 cursor-pointer">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            @endcan
         </div>
 
     </div>
